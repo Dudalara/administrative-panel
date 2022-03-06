@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login.view');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/teste', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('guest:admin');

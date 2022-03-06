@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
+
+Route::get('/login', [LoginController::class, 'showLogin'])->name('login.view');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/teste', [LoginController::class, 'logout']);
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('guest:admin');

@@ -55,7 +55,7 @@ class LoginController extends Controller
             return redirect('login')->with('fail', 'Usuário ou senha incorretas.');
         }
 
-        return redirect('home');
+        return redirect('employees');
     }
 
     public function logout()

@@ -15,10 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Admin::create([
-                'fullname' => 'firstAdmin',
-                'login' => 'admin',
-                'password' => Hash::make('123456')
-            ]);
+        // \App\Models\Admin::create([
+        //         'fullname' => 'firstAdmin',
+        //         'login' => 'admin',
+        //         'password' => Hash::make('123456')
+        //     ]);
+
+        \App\Models\Employee::factory(10)->create();
     }
 }

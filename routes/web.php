@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MovementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,7 @@ Route::middleware('guest:admin')->group(function () {
     Route::get('/employees/{employeeId}/edit', [EmployeeController::class, 'editForm'])->name('employee.edit');
     Route::patch('/employees/edit/{employeeId}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::delete('/employees/destroy/{employeeId}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+    Route::get('/movements', [MovementController::class, 'index'])->name('movement.index');
+    Route::get('/moviments/create', [MovementController::class, 'createForm'])->name('movement.create');
+    Route::post('/moviments/create', [MovementController::class, 'create'])->name('movement.new');
 });

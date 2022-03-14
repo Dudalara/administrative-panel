@@ -45,12 +45,25 @@ class MovementController extends Controller
 
     private function validator($data, $employee = null)
     {
-        return $data->validate([
+        return $data->validate(
+            [
                 'type_movement' => 'required|in:OUT,IN',
                 'amount'        => 'required|numeric',
                 'note'          => 'required|string',
                 'employee_id'   => 'required|exists:employees,id',
                 'admin_id'      => 'exists:admins,id',
-            ]);
+            ],
+            [
+                'type_movement.required' => 'Campo Tipo é obrigatório!',
+                'type_movement.in'       => 'Campo deve ser Entrada ou Saída!',
+                'amount.numeric'         => 'Campo Valor é numérico!',
+                'amount.required'        => 'Campo Valor é obrigatório!',
+                'note.required'          => 'Campo Observação é obrigatório!',
+                'note.string'            => 'Campo Observação deve ser letras!',
+                'employee_id.exists'     => 'Campo Funcionário é obrigatório!',
+                'employee_id.required'   => 'O Id deve existir na tabela funcionários!',
+                'admin_id.exists'        => 'O Id deve existir na tabela admins!',
+            ]
+        );
     }
 }

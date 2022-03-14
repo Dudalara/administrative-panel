@@ -101,13 +101,12 @@ class EmployeeController extends Controller
                 [
                 'fullname.required'        => 'Campo Nome obrigatório!',
                 'fullname.string'          => 'Campo Nome deve ser letras!',
-                'login.required'           => 'O campo login é obrigatório!',
-                'login.unique'             => 'O campo login deve ser único!',
-                'password.required'        => 'Campo Senha é obrigátorio',
-                'password.min'             => 'O tamanho mínimo é :min',
-                'current_balance.numeric'  => 'O campo Saldo deve ser numérico',
-                'admin_id.exists'          => 'O Id deve existir na tabela admins',
-
+                'login.required'           => 'Campo login é obrigatório!',
+                'login.unique'             => 'Campo login deve ser único!',
+                'password.required'        => 'Campo Senha é obrigátorio!',
+                'password.min'             => 'O tamanho mínimo é :min!',
+                'current_balance.numeric'  => 'O campo Saldo deve ser numérico!',
+                'admin_id.exists'          => 'O Id deve existir na tabela admins!',
             ]
             );
         }

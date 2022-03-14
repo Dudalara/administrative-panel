@@ -21,6 +21,7 @@
              <button class="col-2 mx-2 btn btn-dark" type="submit">Buscar</button>
         </form>
         </div>
+
         <table class="table table-dark table-striped">
             <thead>
             <tr>

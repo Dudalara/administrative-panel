@@ -14,6 +14,10 @@
             <button class="col-3 mx-2 btn btn-dark" type="submit">Buscar</button>
         </form>
         </div>
+         <div id="app">
+        @include('messages-flash')
+    </div>
+
         <table class="table table-dark table-striped" >
             <thead>
                 <tr>

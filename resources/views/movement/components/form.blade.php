@@ -13,6 +13,9 @@
         Saída
       </label>
     </div>
+    @error('typeMovement')
+      <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
   </div>
     <div class="form-group">
       <label for="amount">Valor:</label>
@@ -25,11 +28,20 @@
     <div class="form-group">
         <label for="employeeId">Funcionário:</label>
          <select class="form-select" name="employeeId">
-            @foreach ($employees as $employee)
               <option value="" selected>Selecione um funcionário</option>
+            @foreach ($employees as $employee)
               <option value="{{ $employee->id }}">{{ $employee->fullname }}</option>
             @endforeach
         </select>
+    @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+    @endif
     </div>
    <button class="btn btn-dark mt-2" type="submit"> Cadastrar movimentação</button>
 </div>

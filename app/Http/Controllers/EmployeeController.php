@@ -37,7 +37,7 @@ class EmployeeController extends Controller
         $employee = new Employee($data);
         $employee->save();
 
-        return redirect()->route('employee.index');
+        return redirect()->route('employee.index')->with('success', 'Usuário cadastrado');
     }
 
     public function editForm($employeeId)

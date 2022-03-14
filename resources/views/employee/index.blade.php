@@ -14,6 +14,10 @@
             <button class="col-3 mx-2 btn btn-dark" type="submit">Buscar</button>
         </form>
         </div>
+        <div class="messages">
+            @include('messages-flash')
+        </div>
+
         <table class="table table-dark table-striped" >
             <thead>
                 <tr>
@@ -36,13 +40,7 @@
                                 <a href={{ route('employee.edit', $employee->id) }}>
                                     Editar
                                 </a>
-                                <form action="{{ route('employee.destroy', $employee->id)}}" method="POST" class="float-right" >
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit">
-                                        Excluir
-                                    </button>
-                                </form>
+                                <button type="button" class="btn btn-success btn-lg mt-2 ml-2" data-toggle="modal" data-target="#deleteModal" data-id="{{  $employee->id}}">Excluir</button>
                             </nav>
                         </td>
                     </tr>
@@ -52,5 +50,32 @@
 
     {!! prettyPaginationLinks($employees->links()) !!}
     </div>
-@endsection
+    <div id="deleteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Tem certeza que deseja excluir? </p>
+                </div>
 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+                    <form action="{{ route('employee.destroy', $employee->id)}}" method="POST" class="float-right" >
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="employee_id" id="employee_id">
+                        <button type="submit" class="btn btn-success">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    $('#deleteModal').on('show.bs.modal', function (event){
+        var button = $(event.relatedTarget);
+        var recipientId = button.data('id');
+
+        var modal = $(this);
+        modal.find('#employee_id').val(recipientId);
+    })
+</script>
+@endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Movement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -36,7 +37,7 @@ class EmployeeController extends Controller
         $employee = new Employee($data);
         $employee->save();
 
-        return redirect()->route('employee.index');
+        return redirect()->route('employee.index')->with('success', 'Usuário cadastrado');
     }
 
     public function editForm($employeeId)
@@ -60,9 +61,10 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index');
     }
 
-    public function destroy($employeeId)
+    public function destroy(Request $request, $employeeId)
     {
-        $employee = Employee::find($employeeId);
+        $employee = Employee::find($request->employee_id);
+        $this->listMovements($employee->id);
         $employee->delete();
 
         return redirect()->route('employee.index');
@@ -109,5 +111,11 @@ class EmployeeController extends Controller
             ]
             );
         }
+    }
+
+    private function listMovements($employeeId)
+    {
+        return Movement::where('employee_id', $employeeId)
+                        ->delete();
     }
 }

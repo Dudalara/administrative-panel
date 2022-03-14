@@ -15,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index(Request $request)
     {
-        $employees = Employee::search($request->search);
+        $employees = Employee::search($request);
         return view('employee.index')->with('employees', $employees);
     }
 

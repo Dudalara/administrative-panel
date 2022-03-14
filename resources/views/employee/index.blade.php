@@ -3,7 +3,16 @@
 @section('content')
     <div class="container mt-5">
         <div class="d-flex flex-row-reverse mb-2">
-        <a class="col-3 btn btn-dark" href="{{ route('employee.create') }}">Cadastrar Funcionário</a>
+            <a class=" btn btn-dark" href="{{ route('employee.create') }}">Cadastrar Funcionário</a>
+        <form class="col-10 row" action="{{ route('employee.index') }}"  method="GET">
+            <div class="col-3 mx-2">
+                <input type="text" class="form-control" placeholder="Nome" name="fullname">
+            </div>
+            <div class="col-3 mx-2">
+                <input type="date" class="form-control" placeholder="Data de criação" name="date_created">
+            </div>
+            <button class="col-3 mx-2 btn btn-dark" type="submit">Buscar</button>
+        </form>
         </div>
         <table class="table table-dark table-striped" >
             <thead>

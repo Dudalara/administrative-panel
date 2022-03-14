@@ -35,13 +35,13 @@
                             <td>{{ $employee->fullname }}</td>
                             <td>R$ {{ $employee->current_balance}}</td>
                             <td>{{  date_format($employee->created_at, "d/m/Y")}}</td>
-                            <td>
-                            <nav class="nav nav-pills flex-column flex-sm-row">
-                                <a href={{ route('employee.edit', $employee->id) }}>
+                            <td class="align-middle">
+                            <div class="text-center">
+                                <a class="btn btn-primary btn-sm mt-2 ml-2 mx-3" href={{ route('employee.edit', $employee->id) }}>
                                     Editar
                                 </a>
-                                <button type="button" class="btn btn-success btn-lg mt-2 ml-2" data-toggle="modal" data-target="#deleteModal" data-id="{{  $employee->id}}">Excluir</button>
-                            </nav>
+                                <button type="button" class="btn btn-danger btn-sm mt-2 ml-2" data-toggle="modal" data-target="#deleteModal" data-id="{{  $employee->id}}">Excluir</button>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

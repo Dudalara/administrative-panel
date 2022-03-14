@@ -40,7 +40,7 @@ class MovementController extends Controller
         $movement = new Movement($data);
         $movement->save();
 
-        return redirect()->route('movement.index')->with('success', 'Movimentação cadastrado');
+        return redirect()->route('movement.index')->with('success', 'Movimentação cadastrada');
     }
 
     private function validator($data, $employee = null)

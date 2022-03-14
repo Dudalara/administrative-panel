@@ -111,10 +111,4 @@ class EmployeeController extends Controller
             );
         }
     }
-
-    private function listMovements($employeeId)
-    {
-        return Movement::where('employee_id', $employeeId)
-                        ->delete();
-    }
 }

@@ -29,5 +29,8 @@
                 @endforeach
             </tbody>
         </table>
+<div class="mt-5 float-right flex-wrap">
+  {!! prettyPaginationLinks($movements->links()) !!}
+</div>
     </div>
 @endsection

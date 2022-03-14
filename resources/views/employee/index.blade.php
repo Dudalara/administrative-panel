@@ -5,7 +5,7 @@
         <div class="d-flex flex-row-reverse mb-2">
         <a class="col-3 btn btn-dark" href="{{ route('employee.create') }}">Cadastrar Funcionário</a>
         </div>
-        <table class="table table-dark table-striped">
+        <table class="table table-dark table-striped" >
             <thead>
                 <tr>
                     <th>ID</th>
@@ -40,5 +40,8 @@
                 @endforeach
             </tbody>
         </table>
+
+    {!! prettyPaginationLinks($employees->links()) !!}
     </div>
 @endsection
+

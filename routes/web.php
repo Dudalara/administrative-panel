@@ -28,16 +28,19 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('guest:admin')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/employees/page/{page}', [EmployeeController::class, 'index'])->name('employee.index.page');
-    Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
-    Route::get('/employees/create', [EmployeeController::class, 'createForm'])->name('employee.create');
-    Route::post('/employees/create', [EmployeeController::class, 'create'])->name('employee.new');
-    Route::get('/employees/{employeeId}/edit', [EmployeeController::class, 'editForm'])->name('employee.edit');
-    Route::patch('/employees/edit/{employeeId}', [EmployeeController::class, 'update'])->name('employee.update');
-    Route::delete('/employees/destroy/{employeeId}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
-    Route::get('/movements/page/{page}', [MovementController::class, 'index'])->name('employee.index.page');
-    Route::get('/movements', [MovementController::class, 'index'])->name('movement.index');
-    Route::get('/moviments/create', [MovementController::class, 'createForm'])->name('movement.create');
-    Route::post('/moviments/create', [MovementController::class, 'create'])->name('movement.new');
+    Route::prefix('employees')->group(function () {
+        Route::get('/page/{page}', [EmployeeController::class, 'index'])->name('employee.index.page');
+        Route::get('', [EmployeeController::class, 'index'])->name('employee.index');
+        Route::get('/create', [EmployeeController::class, 'createForm'])->name('employee.create');
+        Route::post('/create', [EmployeeController::class, 'create'])->name('employee.new');
+        Route::get('/{employeeId}/edit', [EmployeeController::class, 'editForm'])->name('employee.edit');
+        Route::patch('/edit/{employeeId}', [EmployeeController::class, 'update'])->name('employee.update');
+        Route::delete('/destroy/{employeeId}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+    });
+    Route::prefix('movements')->group(function () {
+        Route::get('/page/{page}', [MovementController::class, 'index'])->name('employee.index.page');
+        Route::get('', [MovementController::class, 'index'])->name('movement.index');
+        Route::get('/create', [MovementController::class, 'createForm'])->name('movement.create');
+        Route::post('/create', [MovementController::class, 'create'])->name('movement.new');
+    });
 });

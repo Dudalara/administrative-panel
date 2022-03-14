@@ -1,4 +1,4 @@
-<div class="container">
+<div class="col-6 container text-white bg-secondary mt-5 px-5 py-5">
   <div class="form-inline">
     <label>Tipo de movimentação:</label>
     <div class="form-check">
@@ -16,19 +16,25 @@
   </div>
     <div class="form-group">
       <label for="amount">Valor:</label>
-      <input type="text" class="form-control" id="amount" name="amount" placeholder="Ex Joao12">
+      <input type="text" class="form-control" id="amount" name="amount" placeholder="R$ 10,00" value="{{ old('amount') }}" autofocus>
     </div>
     <div class="form-group">
       <label for="note">Observação:</label>
-      <input type="string" class="form-control" id="note" name="note">
+      <input type="string" class="form-control" id="note" name="note" value="{{ old('note') }}" autofocus>
     </div>
     <div class="form-group">
         <label for="employeeId">Funcionário:</label>
-         <select class="form-select" aria-label="Default select example" name="employeeId">
+         <select class="form-select" name="employeeId">
             @foreach ($employees as $employee)
+              <option value="" selected>Selecione um funcionário</option>
               <option value="{{ $employee->id }}">{{ $employee->fullname }}</option>
             @endforeach
         </select>
     </div>
-   <button class="btn btn-primary" type="submit"> Cadastrar movimentação</button>
+   <button class="btn btn-dark mt-2" type="submit"> Cadastrar movimentação</button>
 </div>
+<script>
+$(document).ready(function($){
+  $("#amount").mask('000.000.000.000.000,00', {reverse: true});
+});
+</script>

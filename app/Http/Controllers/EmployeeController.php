@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
 {
@@ -27,6 +28,7 @@ class EmployeeController extends Controller
     public function create(Request $request)
     {
         $request['admin_id'] = Auth::guard('admin')->user()->id;
+        $request['current_balance'] = floatval($request->current_balance);
 
         $this->validator($request);
         $data = $request->all();
@@ -71,7 +73,7 @@ class EmployeeController extends Controller
         if ($employee) {
             return $data->validate([
                 'fullname'        => 'string',
-                'login'           => 'string',
+                'login'           => ['string', Rule::unique('employees')->ignore($this->employee)],
                 'password'        => '',
                 'current_balance' => 'numeric',
                 'admin_id'        => 'exists:admins,id',
@@ -79,7 +81,7 @@ class EmployeeController extends Controller
         } else {
             return $data->validate([
                 'fullname'        => 'required|string',
-                'login'           => 'required|string',
+                'login'           => 'required|unique:employees',
                 'password'        => 'required|min:6',
                 'current_balance' => 'nullable|numeric',
                 'admin_id'        => 'exists:admins,id',

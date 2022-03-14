@@ -32,6 +32,7 @@ class MovementController extends Controller
         $request['admin_id'] = Auth::guard('admin')->user()->id;
         $request['type_movement'] = $request->typeMovement;
         $request['employee_id'] = $request->employeeId;
+        $request['amount'] = floatval($request->amount);
 
         $this->validator($request);
         $data = $request->all();

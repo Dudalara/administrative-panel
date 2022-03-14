@@ -21,7 +21,9 @@
              <button class="col-2 mx-2 btn btn-dark" type="submit">Buscar</button>
         </form>
         </div>
-
+        <div class="messages">
+            @include('messages-flash')
+        </div>
         <table class="table table-dark table-striped">
             <thead>
             <tr>

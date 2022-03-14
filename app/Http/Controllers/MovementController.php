@@ -16,7 +16,7 @@ class MovementController extends Controller
      */
     public function index(Request $request)
     {
-        $movements = Movement::search($request->search);
+        $movements = Movement::search($request);
         return view('movement.index')->with('movements', $movements);
     }
 

@@ -24,14 +24,17 @@ class Employee extends Model
         return $this->belongsTo(Admin::class);
     }
 
-    public static function search($search)
+    public static function search($request)
     {
-        if ($search != null) {
-            $searchTerm = "%{$search}%";
-            return Employee::where('fullname', 'LIKE', $searchTerm)
-                                   ->orWhere('created_at', 'LIKE', $searchTerm)
-                                   ->orderBy('fullname', 'desc')
-                                   ->paginate(10);
+        if ($request != null) {
+            return Employee::when($request->fullname, function ($query) use ($request) {
+                $query->where('fullname', 'LIKE', '%'.$request->fullname.'%');
+            })
+                            ->when($request->date_created, function ($query) use ($request) {
+                                $query->where('created_at', 'LIKE', '%'.$request->date_created.'%');
+                            })
+                            ->orderBy('fullname', 'ASC')
+                            ->paginate(10);
         }
 
         return Employee::paginate(10);

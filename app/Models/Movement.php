@@ -47,8 +47,23 @@ class Movement extends Model
         return $this->belongsTo(Employee::class);
     }
 
-    public static function search($search)
+    public static function search($request)
     {
+        if ($request != null) {
+            return Movement::when($request->fullname, function ($query) use ($request) {
+                $query->join('employees as e', 'e.id', '=', 'movements.employee_id')
+                     ->where('e.fullname', 'LIKE', '%'.$request->fullname.'%');
+            })
+                            ->when($request->date_created, function ($query) use ($request) {
+                                $query->where('movements.created_at', 'LIKE', '%'.$request->date_created.'%');
+                            })
+                            ->when($request->type, function ($query) use ($request) {
+                                $query->where('type_movement', 'LIKE', $request->type);
+                            })
+                            ->orderBy('movements.created_at', 'ASC')
+                            ->paginate(10);
+        }
+
         return Movement::paginate(10);
     }
 }

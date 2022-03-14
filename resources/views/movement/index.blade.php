@@ -3,7 +3,23 @@
 @section('content')
     <div class="container mt-5">
         <div class="d-flex flex-row-reverse mb-2">
-        <a class="col-3 btn btn-dark" href="{{ route('movement.create') }}">Cadastrar Movimentação</a>
+            <a class="col-2 btn btn-dark" href="{{ route('movement.create') }}">Cadastrar Movimentação</a>
+        <form class="col-10 row" action="{{ route('movement.index') }}"  method="GET">
+            <div class="col-3 mx-2">
+                <input type="text" class="form-control" placeholder="Nome do funcionário" name="fullname">
+            </div>
+            <div class="col-3 mx-2">
+                <input type="date" class="form-control" placeholder="Data de criação" name="date_created">
+            </div>
+            <div class="col-2 mx-2">
+                <select class="form-control" name="type">
+                    <option value="">Tipo de movimentação</option>
+                    <option value="IN">Entrada</option>
+                    <option value="OUT">Saída</option>[]
+                </select>
+            </div>
+             <button class="col-2 mx-2 btn btn-dark" type="submit">Buscar</button>
+        </form>
         </div>
         <table class="table table-dark table-striped">
             <thead>

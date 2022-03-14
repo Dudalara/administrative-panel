@@ -31,9 +31,9 @@ class Employee extends Model
             return Employee::where('fullname', 'LIKE', $searchTerm)
                                    ->orWhere('created_at', 'LIKE', $searchTerm)
                                    ->orderBy('fullname', 'desc')
-                                   ->paginate(20);
+                                   ->paginate(10);
         }
 
-        return Employee::paginate(20);
+        return Employee::paginate(10);
     }
 }

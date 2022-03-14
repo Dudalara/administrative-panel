@@ -49,6 +49,6 @@ class Movement extends Model
 
     public static function search($search)
     {
-        return Movement::paginate(20);
+        return Movement::paginate(10);
     }
 }

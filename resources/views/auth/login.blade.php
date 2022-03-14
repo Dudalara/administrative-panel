@@ -2,17 +2,15 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="row mb-3">
-                            <label for="login" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="login" class="col-3 col-form-label text-md-end">Login</label>
 
                             <div class="col-md-6">
                                 <input id="login" type="string" class="form-control" name="login" value="{{ old('login') }}" autofocus>
@@ -25,8 +23,8 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                        <div class="row mb-2">
+                            <label for="password" class="col-3 col-form-label text-md-end">Senha</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -38,23 +36,15 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
+                        @if (\Session::has('error'))
+                            <div class="alert alert-danger" role="alert">
+                              {!! \Session::get('error') !!}
                             </div>
-                        </div>
-
+                        @endif
                         <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                            <div class="d-grid gap-2 col-5 mx-auto">
+                                <button type="submit" class="btn btn-dark">
+                                   Entrar
                                 </button>
 
                                 @if (Route::has('password.request'))

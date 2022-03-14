@@ -52,7 +52,7 @@ class LoginController extends Controller
             'password' => $request->get('password'),
         );
         if (!Auth::guard('admin')->attempt($adminData)) {
-            return redirect('login')->with('fail', 'Usuário ou senha incorretas.');
+            return redirect('login')->with('error', 'Credenciais incorretas');
         }
 
         return redirect('employees');

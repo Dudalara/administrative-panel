@@ -1,17 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-    <div class="row">
-      <div class="input-group input-icon">
-            <form class="example" action="{{ route('movement.index') }}" method="get">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>'
-            </form>
-      </div>
-      <a class="col-3 btn btn-primary" href="{{ route('movement.create') }}">Cadastrar Movimentação</a>
-    </div>
-        <table class="table table-striped">
+    <div class="container mt-5">
+        <div class="d-flex flex-row-reverse mb-2">
+        <a class="col-3 btn btn-dark" href="{{ route('movement.create') }}">Cadastrar Movimentação</a>
+        </div>
+        <table class="table table-dark table-striped">
             <thead>
             <tr>
                 <th>ID</th>
@@ -19,7 +13,7 @@
                 <th>Valor</th>
                 <th>Funcionário</th>
                 <th>Observação</th>
-                <th>Data de Criação</th>
+                <th class="text-sm-right">Data de Criação</th>
             </tr>
             </thead>
             <tbody>
@@ -27,16 +21,13 @@
                     <tr>
                         <td>{{ $movement->id }}</td>
                         <td>{{ $movement->type }}</td>
-                        <td>{{ $movement->amount}}</td>
+                        <td>R$ {{ $movement->amount}}</td>
                         <td>{{ $movement->employee_name}}</td>
                         <td>{{ $movement->note}}</td>
-                        <td>{{ $movement->created_at}}</td>
+                        <td>{{ date_format($movement->created_at, "d/m/Y")}}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-@endsection]
-<script>
-
-</script>
+@endsection

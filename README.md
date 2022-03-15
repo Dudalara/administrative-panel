@@ -26,10 +26,13 @@ npm run dev
 ```
 
 ## Gerar chave
+```bash
 docker-comoose exec app bash
 php artisan key:generate 
+```
 
 ## Gerar migrate e seeders
+```bash
 php artisan migrate
 php artisan db:seed
 
@@ -37,3 +40,4 @@ php artisan db:seed
 
 login: admin
 password: 123456
+```

@@ -6,7 +6,7 @@ git clone git@github.com:Dudalara/administrative-panel.git
 ## Configurar ambiente
 ```bash
 cd administrative-panel
-cp .env-example .env
+cp .env.example .env
 ```
 ## Configurar .env
 ```bash

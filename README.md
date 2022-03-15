@@ -27,7 +27,8 @@ npm run dev
 
 ## Gerar chave
 ```bash
-docker-comoose exec app bash
+docker-compose exec app bash
+composer install
 php artisan key:generate 
 ```
 

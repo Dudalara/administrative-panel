@@ -35,9 +35,10 @@ php artisan key:generate
 ```bash
 php artisan migrate
 php artisan db:seed
-
+```
+## Rodar aplicação
 > ### [Click Here](http://localhost:8989)
-
+```bash
 login: admin
 password: 123456
 ```
